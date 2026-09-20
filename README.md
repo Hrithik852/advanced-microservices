@@ -2,16 +2,16 @@
 
 A modern, scalable microservices architecture built with Node.js, Express, MongoDB, RabbitMQ, and OpenTelemetry. 
 
-This repository currently features an **Auth Service** with integrated distributed tracing, messaging, and containerized deployment. 
+This repository currently features an **Auth Service** and a **Profile Service** with integrated distributed tracing, messaging, and containerized deployment. 
 
-*(Upcoming: **Profile Service** which will consume events from the Auth Service to manage user profiles.)*
+The Profile Service consumes events from the Auth Service to manage user profiles automatically.
 
 ---
 
 ## 🚀 Features
 
 - **Authentication Service**: User registration and login functionality using JWT.
-- **Profile Service (Coming Soon)**: Will handle user profiles and listen for user creation events to automate profile setups.
+- **Profile Service**: Handles user profiles and listens for user creation events to automate profile setups.
 - **Message Broker**: Event-driven architecture utilizing **RabbitMQ** (e.g., publishing `user_events` upon registration).
 - **Database**: **MongoDB** for robust data persistence.
 - **Distributed Tracing**: Built-in observability with **OpenTelemetry** and **Jaeger**.
@@ -35,7 +35,7 @@ This repository currently features an **Auth Service** with integrated distribut
 │   ├── server.js         # Entry point for Auth Service
 │   ├── tracing.js        # OpenTelemetry instrumentation initialization
 │   └── package.json      # Node dependencies and scripts
-├── profile-service/      # Upcoming service for user profile management
+├── profile-service/      # Service for user profile management
 ├── docker-compose.yml    # Multi-container orchestration (Mongo, RabbitMQ, Jaeger, Auth)
 └── README.md             # This documentation
 ```
@@ -92,6 +92,7 @@ This command starts:
 - **RabbitMQ** on `localhost:5672` (Management UI on `localhost:15672`)
 - **Jaeger** (Tracing UI on `localhost:16686`)
 - **Auth Service** on `localhost:5001`
+- **Profile Service** on `localhost:5002`
 
 ---
 
@@ -100,7 +101,7 @@ This command starts:
 | Service            | Description                                  | URL / Port                    |
 |--------------------|----------------------------------------------|-------------------------------|
 | **Auth Service**   | API Gateway for User Registration/Login      | `http://localhost:5001`       |
-| **Profile Service**| User Profile Management *(Upcoming)*         | `TBD`                         |
+| **Profile Service**| User Profile Management                      | `http://localhost:5002`       |
 | **MongoDB**        | NoSQL Database                               | `localhost:27017`             |
 | **RabbitMQ Admin** | Message Broker Management Dashboard          | `http://localhost:15672`      |
 | **Jaeger UI**      | Distributed Tracing Dashboard                | `http://localhost:16686`      |
